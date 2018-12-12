@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="ua">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Екологiчний стан атмосферного повiтря за даними  газохроматографiчного аналiзу</title>
+  </head>
+  <body>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Екологiчний стан атмосферного повiтря</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="regions-tab" data-toggle="tab" href="#regions" role="tab" aria-controls="regions" aria-selected="false">Області</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="settlements-tab" data-toggle="tab" href="#settlements" role="tab" aria-controls="settlements" aria-selected="false">Населені пункти</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="sampling-data-tab" data-toggle="tab" href="#sampling-data" role="tab" aria-controls="sampling-data" aria-selected="false">Дані відбору проб</a>
+      </li>
+    </ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  
+  <!-- *** -->
+  <!-- Усі дані в купі -->
+  <!-- *** -->
+  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    
+      <div class="container">        
+         <table id="home" class="table order-list">
+            <thead>
+                <tr> 
+                  <td>Назва області</td>                
+                  <td>Назва населеного пункту</td>
+                  <td>Геоморфологічна прив’язка місця відбору проби</td>
+                  <td>Дата відбору проби</td>
+                  <td>Вміст вуглекислого газу, мг/м3</td>
+                  <td>Вміст СО, мг/м3</td>
+                  <td>Вміст SO2, мг/м3</td>
+                  <td>Вміст бензину, мг/м3</td>
+                  <td>Вміст HCl, мг/м3</td>
+                  <td>Герб населеного пункту</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>               
+            </tfoot>
+        </table>
+    </div> 
+    
+    
+  </div>
+  
+  <!-- *** -->
+  <!-- Області -->
+  <!-- *** -->  
+  <div class="tab-pane" id="regions" role="tabpanel" aria-labelledby="regions-tab">
+        
+    <div class="container">        
+         <table id="myTable" class="table order-list">
+            <thead>
+                <tr>                  
+                  <td>Код області</td>                
+                  <td>Назва області</td>
+                  <td></td>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="sample">
+                    <td class="col-sm-2">
+                        <input type="text" name="id" class="form-control" />
+                    </td>
+                    <td class="col-sm-4">
+                        <input type="text" name="name" class="form-control"/>
+                    </td>
+                    <td class="col-sm-2"><a class="deleteRow"></a>
+
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" style="text-align: left;">
+                        <input type="button" class="btn btn-lg btn-block " id="addRow" value="Додати рядок" />
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+            </tfoot>
+        </table>   
+    </div>
+    
+  </div>
+  
+  <!-- *** -->
+  <!-- Населені пункти -->
+  <!-- *** -->
+  <div class="tab-pane" id="settlements" role="tabpanel" aria-labelledby="settlements-tab">
+    
+      <div class="container">        
+         <table id="settlements" class="table order-list">
+            <thead>
+                <tr> 
+                  <td>Код населеного пункту</td>                
+                  <td>Код області</td>
+                  <td>Назва населеного пункту</td>
+                  <td>Геоморфологічна прив’язка місця відбору проби</td>
+                  <td>Герб населеного пункту</td>
+                  <td></td>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="sample-settlements">
+                    <td class="col-sm-1">
+                        <input type="text" name="id" class="form-control" />
+                    </td>
+                    <td class="col-sm-2">
+                      <!--
+                        <input type="text" name="region-id" class="form-control"/>
+                      -->                       
+                      <select id="region-select" class="form-control">
+                        <option value="0" selected>Виберіть область...</option>
+                      </select>
+                    </td>
+                    <td class="col-sm-2">
+                        <input type="text" name="name" class="form-control" />
+                    </td>
+                    <td class="col-sm-2">
+                        <input type="text" name="geomorphic-binding" class="form-control" />
+                    </td>
+                    <td class="col-sm-2">
+                      <input type="file" name="emplem-file" class="form-control-file" id="emplemInputFile" aria-describedby="fileHelp">
+                      <img id="image" src="">
+                       <!--  
+                      <input type="text" name="emblem" class="form-control"/>
+                        -->
+                    </td>
+                    <td class="col-sm-2"><a class="deleteRow"></a>
+
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" style="text-align: left;">
+                        <input type="button" class="btn btn-lg btn-block " id="addrow-settlements" value="Додати рядок" />
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    
+  </div>
+  
+  <!-- *** -->
+  <!-- Дані відбору проб -->
+  <!-- *** -->
+  
+  <div class="tab-pane" id="sampling-data" role="tabpanel" aria-labelledby="sampling-data-tab">
+    
+      <div class="container">        
+         <table id="sampling-data" class="table order-list">
+            <thead>
+                <tr> 
+                  <td>Код населеного пункту</td>                
+                  <td>Дата відбору проби</td>
+                  <td>Вміст вуглекислого газу</td>
+                  <td>Вміст СО</td>
+                  <td>Вміст SO2</td>
+                  <td>Вміст бензину</td>
+                  <td>Вміст HCl</td>
+                  <td></td>
+                </tr>
+            </thead>
+            <tbody>         
+              <tr id="sample-sampling-data">
+                <td class="col-sm-1">
+                  <!-- 
+                    <input type="text" name="settlement-id" class="form-control" />
+                  -->                      
+                  <select id="settlement-select" class="form-control">
+                    <option value="0" selected>Виберіть населений пункт...</option>
+                  </select>
+                </td>
+                <td class="col-sm-1">
+                    <input type="text" name="sampling-date" class="form-control"/>
+                </td>
+                <td class="col-sm-1">
+                    <input type="text" name="CO2-content" class="form-control" />
+                </td>
+                <td class="col-sm-1">
+                    <input type="text" name="CO-content" class="form-control" />
+                </td>
+                <td class="col-sm-1">
+                    <input type="text" name="SO2-content" class="form-control"/>
+                </td>                          
+                <td class="col-sm-1">       
+                  <input type="text" name="Gasoline-content" class="form-control"/>             
+                </td>              
+                <td class="col-sm-1">       
+                  <input type="text" name="HCl-content" class="form-control"/>             
+                </td> 
+                <td class="col-sm-1"><a class="deleteRow"></a>   
+                </td>       
+              </tr>
+            </tbody>
+            <tfoot>               
+              <tr>                   
+                <td colspan="8" style="text-align: left;">                     
+                  <input type="button" class="btn btn-lg btn-block " id="addrow-sampling-data" value="Додати рядок" />   
+                </td> 
+              </tr>           
+              <tr>   
+              </tr>
+            </tfoot>
+        </table>
+    </div>    
+    
+    
+  </div>
+  
+  
+<!-- Tab panes end-->  
+</div>
+
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Скрипти -->
+    <!-- Області -->
+    <script>'use strict';
+class Region { //Область
+  constructor(id, name) {
+    
+    this.id = id; //код області
+    this.name = name; //назва області
+   
+  }
+}
+</script>
+    <script>//Заповнення таблиць даними
+//За умовою, якщо усі таблиці порожні
+$(document).ready(function () {
+  /*
+  localStorage.setItem("regions", JSON.stringify(new Array())); 
+  localStorage.setItem("sampling-data", JSON.stringify(new Array()));
+  localStorage.setItem("settlements", JSON.stringify(new Array()));
+  */
+  if(regions.length == 0 && settlements.length == 0 && samplingDataArray.length == 0){
+    
+    alert("all clear!");
+    regions.push(new Region('100', 'Івано-Франківська'));
+    regions.push(new Region('101', 'Чернівецька'));
+    regions.push(new Region('102', 'Вінницька'));
+    regions.push(new Region('103', 'Львівська'));
+    
+    localStorage.setItem("regions", JSON.stringify(regions));
+    
+    settlements.push(new Settlement('10', '100', 'Пiдкамiнь', 'Заплава потiчка - притоки р. Свiрж', "Pidkamin.png") );
+    settlements.push(new Settlement('20', '100', 'Рогатин', 'Заплава р. Гнила Липа', "Rohatyn.png") );
+    settlements.push(new Settlement('30', '100', 'Добринiв', 'Берег р. Студений Потiк', "") );
+    settlements.push(new Settlement('40', '100', 'Березiвка', 'Вододiл', "") );
+    settlements.push(new Settlement('50', '101', 'Путила', 'Вододiл', "") );
+    settlements.push(new Settlement('70', '102', 'Вінниця', 'Заплава р. Південний Буг', "") );  
+    settlements.push(new Settlement('80', '103', 'Стрий', 'II надзаплавна тераса р. Стрий', "") );
+    settlements.push(new Settlement('90', '101', 'Кіцмань', 'I надзаплавна тераса р. Днiстер', "") );
+    
+    localStorage.setItem("settlements", JSON.stringify(settlements));
+    
+    samplingDataArray.push(new SamplingData('10', '22.02.97', 0.033, 3, 0.05, 1.5, 0.2));
+    samplingDataArray.push(new SamplingData('20', '22.02.97', 0.013, 1.2, 0.04, 0.01, 0));
+    samplingDataArray.push(new SamplingData('30', '22.02.97', 0.071, 1.3, 0.04, 0.09, 0.03));
+    samplingDataArray.push(new SamplingData('40', '22.02.97', 0.03, 1.1, 0, 0.01, 0));
+    samplingDataArray.push(new SamplingData('50', '22.02.97', 0.031, 0.2, 0.01, 0.01, 0));
+    samplingDataArray.push(new SamplingData('10', '23.02.97', 0.013, 1.2, 0.05, 0.02, 0));
+    samplingDataArray.push(new SamplingData('20', '23.02.97', 0.031, 1, 0, 0.01, 0.01));
+    samplingDataArray.push(new SamplingData('70', '24.03.98', 0.033, 0.03, 0.15, 1.2, 0.03));
+    samplingDataArray.push(new SamplingData('80', '24.05.98', 0.018, 1.3, 0.2, 0.02, 0));
+    samplingDataArray.push(new SamplingData('90', '24.07.99', 0.017, 1.2, 0.1, 0.01, 0));
+    
+    localStorage.setItem("sampling-data", JSON.stringify(samplingDataArray));
+    updateAllView();
+  }
+  
+  
+});</script>
+    <!-- Населені пункти -->
+    <script>//
+var regions = new Array();
+var counter = 0;
+function createRegionRow(myCounter, region) {
+        
+  var newRow = $('<tr class="region-row"></tr>');
+  var cols = "";
+  cols += '<td><input type="text" class="form-control" name="id' + myCounter + '" value="'+ region.id +'"/></td>';
+  cols += '<td><input type="text" class="form-control" name="name' + myCounter + '" value="'+ region.name +'"/></td>';
+  cols += '<td>';
+  cols += '<input type="button" class="ibtnCh btn btn-md btn-warning"  value="Змінити">';
+  cols += '<input type="button" class="ibtnDel btn btn-md btn-danger"  value="Видалити">';
+  cols += '</td>';
+  newRow.append(cols);
+  $("#sample").before(newRow);
+}
+function updateRegions() {
+  
+  //localStorage.setItem("regions", JSON.stringify(new Array()));
+  counter = 0;
+  var savedRegions = JSON.parse(localStorage.getItem("regions"));
+    
+  if(savedRegions == null){
+    return;
+  }
+  
+  savedRegions.forEach(function(region, i, arr) {
+    
+    createRegionRow(counter, region); 
+    regions.push(region);
+    counter++;
+    
+  });
+}
+updateRegions();
+$(document).ready(function () {
+  
+  //Додати рядок
+  $("#addRow").on("click", function () {
+    
+    let region = new Region($("#sample input[name='id']").val(), $("#sample input[name='name']").val());
+    for (var i =0; i < regions.length; i++){
+      if(region.id === regions[i].id || region.name ===regions[i].name){
+        alert("Код або область вже існує у таблиці");
+        return;
+      }
+      if(region.id === "" || region.name === ""){
+        alert("Поля не повинні бути пустими");
+        return;
+      }
+      
+    }
+    
+    regions.push(region);
+    createRegionRow(counter, region);
+    $("#sample input[name='id']").val('');
+    $("#sample input[name='name']").val('');
+    localStorage.setItem("regions", JSON.stringify(regions));    
+    
+    counter++;
+    
+  });
+  //Видалення рядку
+  $("table.order-list").on("click", ".ibtnDel", function (event) {
+          
+    var id = $(this).closest("tr").find('input').val();
+    //alert(id);
+    //Перевіряємо чи можна видалити рядок
+    //Якщо є записи, що його використовують, то його не можна видалити
+    for (var i =0; i < settlements.length; i++){
+      if(settlements[i].regionId === id){
+        alert('Цей запис видалити не можна! Спочатку видаліть відповідні записи у таблиці "Населені пукти"');
+        return;
+      }
+    }
+    
+    for (var i =0; i < regions.length; i++){
+      
+      if (regions[i].id === id) { 
+        //alert(regions[i].id);
+        regions.splice(i,1);
+        
+        $(this).closest("tr").remove();
+        
+        localStorage.setItem("regions", JSON.stringify(regions));
+        counter -= 1;
+        //updateRegions();
+        break;  
+      }
+    }  
+    
+    
+  });
+  //Оновлення та збереження даних рядка
+  $("table.order-list").on("click", ".ibtnCh", function (event) {  
+    //alert("Yes22");
+    var id = $(this).closest("tr").find('td:nth-child(1) input').val();
+    var name = $(this).closest('tr').find('td:nth-child(2) input').val();
+    var aName = $(this).closest("tr").find('td:nth-child(1) input').attr('name');
+    
+    if (aName.indexOf("id") === 0) {
+      var num = aName.substring(2);
+      if(!(regions[num].id === id)) {
+        alert('Код області змінити не можна!');
+        $(this).closest("tr").find('td:nth-child(1) input').val(regions[num].id);
+      }
+      //alert(num);
+      for (var i =0; i < regions.length; i++){
+        if(i == num) {
+          //alert(i);
+          continue;
+        }
+        if(name ===regions[i].name){
+          alert("Область вже існує у таблиці");
+          $(this).closest('tr').find('td:nth-child(2) input').val(regions[num].name);
+          return;
+        }
+        if(name === ""){
+          alert("Поля не повинні бути пустими");
+          $(this).closest('tr').find('td:nth-child(2) input').val(regions[num].name);
+          return;
+        }
+      }
+      
+      //regions[num].id = id;
+      regions[num].name = name;
+      localStorage.setItem("regions", JSON.stringify(regions));
+    }
+  });
+    
+  //Оновлення інформації
+  $('a[id="regions-tab"]').on('click', function (e) {
+    
+    $("#regions").find('.region-row').remove();
+    regions = new Array();
+    updateRegions();
+    
+  });
+  
+//end of $(document).ready(function ()
+});
+</script>
+    <script>var settlements = new Array();
+var sCounter = 0;
+function createSettlementRow(myCounter, settlement) {
+  
+  var newRow = $('<tr class="settlement-row"></tr>');
+  var cols = "";
+  
+  cols += '<td><input type="text" class="form-control" name="id' + myCounter + '" value="'+ settlement.id +'"/></td>';
+  /*
+                        <select class="form-control">
+                        <option selected>Виберіть область...</option>
+                      </select>*/
+  //cols += '<td><input type="text" class="form-control" name="region-id' + myCounter + '" value="'+ settlement.regionId +'"/></td>';
+  //cols += '<td><select class="form-control name="region-id' + myCounter + '" value="'+ settlement.regionId +'>';
+  cols += '<td><select class="form-control name="region-id' + myCounter + '">';
+  cols += '<option value="0">Виберіть область...</option>';
+  regions.forEach(function(region, i, arr) {
+    //$('#region-select').append('<option value="'+region.id+'">'+region.name+'</option>');
+    if(region.id === settlement.regionId){
+      //alert("same!");
+      cols += '<option selected value="'+region.id+'">'+region.name +'</option>';
+    }
+    else{
+      cols += '<option value="'+region.id+'">'+region.name +'</option>';
+    }
+    
+      
+  });
+  cols +='</select></td>';
+  
+  cols += '<td><input type="text" class="form-control" name="name' + myCounter + '" value="'+ settlement.name +'"/></td>';
+  cols += '<td><input type="text" class="form-control" name="geomorphic-binding' + myCounter + '" value="'+ settlement.geomorphicBinding +'"/></td>';
+  cols += '<td>';
+  //cols += '<input type="text" class="form-control" name="emblem' + myCounter + '" value="'+ settlement.emblem +'"/>';
+  cols += '<input type="file" class="form-control-file" id="emplemInputFile" name="emblem-file'+ myCounter +'"aria-describedby="fileHelp">';
+  if(settlement.emblem == null){
+    alert('1null');
+    //alert(settlement.emblem);
+  }
+  
+  if(settlement.emblem.length > 1 && settlement.emblem != ""){
+    cols += '<img id="image" src="img/'+ settlement.emblem +'">';
+  }
+  else{
+    cols += '<img id="image" src="">';
+  }
+  cols +='</td>';
+    
+  cols += '<td>';
+  cols += '<input type="button" class="ibtnChSettlement btn btn-md btn-warning"  value="Змінити">';
+  cols += '<input type="button" class="ibtnDelSettlement btn btn-md btn-danger"  value="Видалити">';
+  cols += '</td>';
+  
+  newRow.append(cols);
+  
+  $("#sample-settlements").before(newRow);
+}
+function updateSettlements() {
+    
+  var savedSettlements = JSON.parse(localStorage.getItem("settlements"));
+  if(savedSettlements == null){
+    alert("null!");
+    return;
+  }
+  sCounter = 0;
+  savedSettlements.forEach(function(settlement, i, arr) {
+    
+    createSettlementRow(sCounter, settlement);
+    settlements.push(settlement);
+    sCounter++;
+  });
+  //Список доступних областей
+  regions.forEach(function(region, i, arr) {
+    //cols += '<option selected>Виберіть область...</option>';
+    $('#region-select').append('<option value="'+region.id+'">'+region.name+'</option>');
+      
+  });
+  
+  
+  //$("#region-select").val("443");
+  //$("#region-select").val(0);
+  //$("#region-select").selectpicker("refresh");
+  
+  
+}
+updateSettlements();
+function updateSettlementsAll() {
+      
+  $("#settlements").find('.settlement-row').remove();
+  $("#settlements").find('select option').remove();
+  $('#region-select').append('<option value="0" selected>Виберіть область...</option>');    
+  settlements = new Array();
+  updateSettlements();
+}
+$(document).ready(function () {
+    //var sCounter = 0;
+  
+  //Додати рядок
+  $("#addrow-settlements").on("click", function () {
+        
+    var pathName = $("#sample-settlements input[type='file']").val();
+    pathName = pathName.replace("C:\\fakepath\\", "");
+    
+    /*  
+    if (fieldVal != undefined || fieldVal != "") {
+    
+      $(this).next(".custom-file-control").attr('data-content', fieldVal);
+  
+    }
+    */
+    
+    let settlement = new Settlement(
+      $("#sample-settlements input[name='id']").val(), 
+      //$("#sample-settlements input[name='region-id']").val(),
+      $("#sample-settlements #region-select").val(), 
+      $("#sample-settlements input[name='name']").val(), 
+      $("#sample-settlements input[name='geomorphic-binding']").val(),
+      pathName
+      //$("#sample-settlements input[name='emblem']").val() 
+    );
+    
+    for (var i =0; i < settlements.length; i++){
+      
+      if(settlement.id === settlements[i].id || settlement.name ===settlements[i].name){
+        alert("Код або населений пункт вже існує у таблиці");
+        return;    
+      }
+      if(settlement.id === "" || settlement.name === ""){
+        alert("Поля не повинні бути пустими");
+        return;
+      }
+      
+    }
+    //alert(pathName);
+    //alert($("#sample-settlements input[type='file']").attr('src'));
+    settlements.push(settlement);
+  
+    createSettlementRow(sCounter, settlement);
+    
+    $("#sample-settlements input[name='id']").val('');
+    //$("#sample-settlements input[name='region-id']").val('');
+    //$('#region-select').val('');
+    //$('#region-select').selectpicker("refresh");  
+    $('#sample-settlements #region-select').val('0');
+    
+    $("#sample-settlements input[name='name']").val('');
+    $("#sample-settlements input[name='geomorphic-binding']").val('');
+    //$("#sample-settlements input[name='emblem']").val('');
+    
+    $('#sample-settlements #image').attr('src','');
+    $("#sample-settlements input[type='file']").val('');
+    
+    localStorage.setItem("settlements", JSON.stringify(settlements));    
+    
+    sCounter++;
+    
+  });
+  //Видалення рядку
+  $("table.order-list").on("click", ".ibtnDelSettlement", function (event) {
+          
+    var id = $(this).closest("tr").find('input').val();
+    //alert(id);
+        
+    //Перевіряємо чи можна видалити рядок
+    //Якщо є записи, що його використовують, то його не можна видалити
+    for (var i =0; i < samplingDataArray.length; i++){
+      
+      if(samplingDataArray[i].settlementId === id){
+        alert('Цей запис видалити не можна! Спочатку видаліть відповідні записи у таблиці "Дані відбору проб"');
+        return;
+      }
+      
+    }
+    
+    for (var i =0; i < settlements.length; i++){
+      if (settlements[i].id === id) {      
+        settlements.splice(i,1);
+        
+        $(this).closest("tr").remove();
+        localStorage.setItem("settlements", JSON.stringify(settlements));
+        sCounter -= 1;       
+        break;  
+      }
+    } 
+    updateSettlementsAll();
+    
+  });
+  
+  //збереження даних рядка
+  $("table.order-list").on("click", ".ibtnChSettlement", function (event) {  
+    
+    var settlement = new Settlement();    
+  
+    settlement.id = $(this).closest("tr").find('td:nth-child(1) input').val();
+    settlement.regionId = $(this).closest('tr').find('td:nth-child(2) select').val();
+    settlement.name = $(this).closest('tr').find('td:nth-child(3) input').val();
+    settlement.geomorphicBinding = $(this).closest('tr').find('td:nth-child(4) input').val();
+    
+    //settlement.emblem = $(this).closest('tr').find('td:nth-child(5) input').val();
+    
+    var fieldVal = $(this).closest('tr').find('td:nth-child(5) input[type="file"]').val();
+    fieldVal = fieldVal.replace("C:\\fakepath\\", "");
+    
+    if (fieldVal != undefined && fieldVal != "") { 
+      settlement.emblem = fieldVal;
+    }
+    
+    var aName = $(this).closest("tr").find('td:nth-child(1) input').attr('name');
+    
+    if (aName.indexOf("id") === 0) {
+      var num = aName.substring(2);
+      //alert(num);
+      if(!(settlements[num].id === settlement.id)) {
+        alert('Код населеного пункту змінити не можна!');
+        $(this).closest("tr").find('td:nth-child(1) input').val(settlements[num].id);
+        settlement.id = settlements[num].id;
+      }
+      
+      settlements[num] = settlement;
+      localStorage.setItem("settlements", JSON.stringify(settlements));
+      //updateSettlements();
+      
+      //updateSettlementsAll();
+    }
+    updateSettlementsAll();
+  });
+  
+  //Оновлення інформації
+  $('a[id="settlements-tab"]').on('click', function (e) {
+    updateSettlementsAll();
+  });
+  
+  
+  $(document).on('change', '.form-control-file', function(){
+  
+    //var i = $(this).prev('label').clone();
+    var file = this.files[0].name;
+    //alert(file);
+    //$(this).next('#image').attr('src','img/' + this.files[0].name);
+    $(this).next('#image').attr('src','img/' + file);
+    
+    //$('#image').attr('src','img/' + this.files[0].name);
+    
+        
+    /*
+    var i = 0, files = this.files, len = files.length;
+    for (; i < len; i++) {
+        console.log("Filename: " + files[i].name);
+        console.log("Type: " + files[i].type);
+        console.log("Size: " + files[i].size + " bytes");
+    }*/
+  });
+});</script>
+    <!-- Дані відбору проб -->
+    <script>'use strict';
+class SamplingData { //Дані відбору проб
+  constructor(settlementId, samplingDate, CO2Content, COContent, SO2Content, GasolineContent, HClContent) {
+    
+    this.settlementId = settlementId; //код населеного пункту
+    this.samplingDate = samplingDate; //дата відбору проби
+    this.CO2Content = CO2Content; //вміст вуглекислого газу
+    this.COContent = COContent; //вміст СО
+    this.SO2Content = SO2Content; //вміст SO2
+    this.GasolineContent = GasolineContent; //вміст бензину
+    this.HClContent = HClContent; //вміст HCl
+   
+  }
+}
+</script>
+    <script>var samplingDataArray = new Array();
+var sdCounter = 0;
+function createSamplingDataRow(myCounter, samplingData) {
+        
+  var newRow = $('<tr class="sampling-data-row"></tr>');
+  var cols = "";
+  cols += '<td><select class="form-control" name="settlement-id' + myCounter + '">';
+  cols += '<option value="0">Виберіть населений пункт...</option>';
+  
+  settlements.forEach(function(settlement, i, arr) {
+    
+    if(settlement.id === samplingData.settlementId){
+      //alert("same!");
+      cols += '<option selected value="'+settlement.id+'">'+settlement.name +'</option>';
+    }
+    else{
+      cols += '<option value="'+settlement.id+'">'+settlement.name +'</option>';
+    }
+         
+  });
+  
+  cols += '</select></td>';
+    
+  cols += '<td><input type="text" class="form-control" name="sampling-date' + myCounter + '" value="'+ samplingData.samplingDate +'"/></td>';
+  cols += '<td><input type="text" class="form-control" name="CO2-content' + myCounter + '" value="'+ samplingData.CO2Content +'"/></td>';
+  cols += '<td><input type="text" class="form-control" name="CO-content' + myCounter + '" value="'+ samplingData.COContent +'"/></td>';
+  cols += '<td><input type="text" class="form-control" name="SO2-content' + myCounter + '" value="'+ samplingData.SO2Content +'"/></td>';
+  cols += '<td><input type="text" class="form-control" name="Gasoline-content' + myCounter + '" value="'+ samplingData.GasolineContent +'"/></td>';
+  cols += '<td><input type="text" class="form-control" name="HCl-content' + myCounter + '" value="'+ samplingData.HClContent +'"/></td>';
+  //cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Видалити"></td>';
+    
+  cols += '<td>';
+  cols += '<input type="button" class="ibtnChSamplingData btn btn-md btn-warning"  value="Змінити">';
+  cols += '<input type="button" class="ibtnDelSamplingData btn btn-md btn-danger"  value="Видалити">';
+  cols += '</td>';
+  
+  newRow.append(cols);
+  $("#sample-sampling-data").before(newRow);
+}
+function updateSamplingData() {
+    
+  var savedSamplingData = JSON.parse(localStorage.getItem("sampling-data"));
+  if(savedSamplingData == null){
+    return;
+  }
+  sdCounter = 0;
+  
+  savedSamplingData.forEach(function(samplingData, i, arr) {
+     
+    createSamplingDataRow(sdCounter, samplingData);
+    samplingDataArray.push(samplingData);
+    sdCounter++;
+  }); 
+  
+  //Список доступних населених пунктів
+  settlements.forEach(function(settlement, i, arr) {
+    $('#settlement-select').append('<option value="'+settlement.id+'">'+settlement.name+'</option>');
+      
+  });
+}
+updateSamplingData();
+$(document).ready(function () {
+  
+  $("#addrow-sampling-data").on("click", function () {
+        
+    let samplingData = new SamplingData(
+      $("#sample-sampling-data #settlement-select").val(),
+      //$("#sample-sampling-data input[name='settlement-id']").val(), 
+      $("#sample-sampling-data input[name='sampling-date']").val(), 
+      $("#sample-sampling-data input[name='CO2-content']").val(), 
+      $("#sample-sampling-data input[name='CO-content']").val(), 
+      $("#sample-sampling-data input[name='SO2-content']").val(),
+      $("#sample-sampling-data input[name='Gasoline-content']").val(),
+      $("#sample-sampling-data input[name='HCl-content']").val()
+    );
+    //alert(samplingData.settlementId);
+    
+    samplingDataArray.push(samplingData);
+  
+    createSamplingDataRow(sdCounter, samplingData);
+    
+      $("#sample-sampling-data #settlement-select").val("0");
+      $("#sample-sampling-data input[name='sampling-date']").val(''); 
+      $("#sample-sampling-data input[name='CO2-content']").val(''); 
+      $("#sample-sampling-data input[name='CO-content']").val(''); 
+      $("#sample-sampling-data input[name='SO2-content']").val('');
+      $("#sample-sampling-data input[name='Gasoline-content']").val('');
+      $("#sample-sampling-data input[name='HCl-content']").val('');
+    
+    localStorage.setItem("sampling-data", JSON.stringify(samplingDataArray));    
+    
+    sdCounter++;
+    
+  });
+  //Видалення рядку
+  
+  $("table.order-list").on("click", ".ibtnDelSamplingData", function (event) {
+          
+    var id = $(this).closest("tr").find('select').val();
+    var samplingDate = $(this).closest("tr").find('td:nth-child(2) input').val();
+    
+    //alert(id);
+    //alert(samplingDate);
+    
+    for (var i =0; i < samplingDataArray.length; i++){
+      if (samplingDataArray[i].settlementId === id && samplingDataArray[i].samplingDate === samplingDate) {      
+        samplingDataArray.splice(i,1);
+        
+        $(this).closest("tr").remove();
+        localStorage.setItem("sampling-data", JSON.stringify(samplingDataArray));
+        sdCounter -= 1;       
+        break;  
+      }
+    }  
+    
+  });
+  
+  
+  //збереження даних рядка
+  $("table.order-list").on("click", ".ibtnChSamplingData", function (event) {  
+      
+    var sample = new SamplingData();   
+    
+    sample.settlementId = $(this).closest('tr').find('td:nth-child(1) select').val();
+    sample.samplingDate = $(this).closest("tr").find('td:nth-child(2) input').val();
+    sample.CO2Content = $(this).closest("tr").find('td:nth-child(3) input').val();
+    sample.COContent = $(this).closest("tr").find('td:nth-child(4) input').val();
+    sample.SO2Content = $(this).closest("tr").find('td:nth-child(5) input').val();
+    sample.GasolineContent = $(this).closest("tr").find('td:nth-child(6) input').val();
+    sample.HClContent = $(this).closest("tr").find('td:nth-child(7) input').val();
+        
+    var aName = $(this).closest("tr").find('td:nth-child(1) select').attr('name');
+    var identifier = "settlement-id";
+    if(aName == null) return;
+    if (aName.indexOf("settlement-id") === 0) {
+      var num = aName.substring(identifier.length);
+      samplingDataArray[num] = sample;
+      localStorage.setItem("sampling-data", JSON.stringify(samplingDataArray));
+    }
+  });
+  
+  //Оновлення інформації
+  $('a[id="sampling-data-tab"]').on('click', function (e) {
+    //alert("up");
+    $('#sampling-data').find('.sampling-data-row').remove();
+    $('#sampling-data').find('select option').remove();
+    $('#settlement-select').append('<option value="0">Виберіть населений пункт...</option>');
+    samplingDataArray = new Array();
+    updateSamplingData();
+    
+  });  
+});</script>  
+    <script>'use strict';
+class Settlement { //Населений пункт
+  constructor(id, regionId, name, geomorphicBinding, emblem) {
+    
+    this.id = id; //код населеного пункту
+    this.regionId = regionId; //код області
+    this.name = name; //назва населеного пункту
+    this.geomorphicBinding = geomorphicBinding; //геоморфологічна прив’язка місця відбору проби
+    this.emblem = emblem; //герб населеного пункту
+   
+  }
+}
+</script>
+    
+    <!-- Заповнення таблиць данними -->
+    <script>//Відображення всієї інформації в одній таблиці
+var viewAllTable = new Array(samplingDataArray.length);
+var rowCounter = 0;
+var columnsNum = 10;
+//Зв'язування таблиць об'єктів
+function createViewAllTableRow(myCounter, sample) {
+  
+  var settlement;
+  var region;
+  
+  for (var i =0; i < settlements.length; i++){
+      if (settlements[i].id === sample.settlementId) {
+        settlement = settlements[i];
+        break;  
+      }
+  }
+  
+  if(settlement == null) return;
+  
+  for (var i =0; i < regions.length; i++){
+    //alert(regions[i].name);
+      if (regions[i].id === settlement.regionId) {
+        region = regions[i]; 
+        break;  
+      }
+  } 
+  if(region == null) return;
+  
+  var newRow = $('<tr></tr>');
+  var cols = "";
+  //cols += '<td> </td>';
+  cols += '<td>' + region.name +'</td>';
+  cols += '<td>' + settlement.name +'</td>';
+  cols += '<td>' + settlement.geomorphicBinding +'</td>';
+  cols += '<td>' + sample.samplingDate +'</td>';
+  cols += '<td>' + sample.CO2Content +'</td>';
+  cols += '<td>' + sample.COContent +'</td>';
+  cols += '<td>' + sample.SO2Content +'</td>';
+  cols += '<td>' + sample.GasolineContent +'</td>';
+  cols += '<td>' + sample.HClContent +'</td>';
+  cols += '<td>' + settlement.emblem +'</td>';
+  
+  newRow.append(cols);
+  $("#home tbody").append(newRow);
+  //$("#sample-settlements").before(newRow);
+}
+function updateAllView() {
+    
+  samplingDataArray.forEach(function(sample, i, arr) {
+    
+    rowCounter = 0;
+    createViewAllTableRow(rowCounter, sample);
+    
+    //viewAllTable.push(sample);
+    rowCounter++;
+  });
+  
+}
+updateAllView();
+//Оновлення інформації у таблиці
+$(document).ready(function () {
+  
+  $('a[id="home-tab"]').on('click', function (e) {
+    
+    $("#home").find('tbody tr').remove();
+    updateAllView();
+    
+  });
+  
+});</script>
+    
+    
+  </body>
+</html>
